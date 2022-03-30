@@ -7,7 +7,9 @@ fun main(args: Array<String>) {
     val persons = listOf(Person("Alice"),
                          Person("Bob", age = 29))
 
-    val oldest = persons.maxBy { it.age ?: 0 }
+    val oldest = persons.stream().max { p1, p2 ->
+        p1.age ?: 0.compareTo(p2.age ?: 0)
+    }.get()
     println("The oldest is: $oldest")
 }
 
